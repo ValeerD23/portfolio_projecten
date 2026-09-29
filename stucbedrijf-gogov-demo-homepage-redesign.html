@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stucbedrijf Gogov — 3e Generatie Vakmanschap | Demo Homepage</title>
+    <style>
+      :root {
+        --ink: #14181f;
+        --muted: #5b6472;
+        --line: #e6e9ef;
+        --brand: #c47a2e;
+        --brand-dark: #a5611f;
+        --bg: #faf9f7;
+        --card: #ffffff;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+      /* top bar */
+      .topbar { background: var(--ink); color: #cbd2dd; font-size: 13px; }
+      .topbar .wrap { display: flex; justify-content: space-between; padding: 8px 24px; flex-wrap: wrap; gap: 8px; }
+      .topbar b { color: #fff; }
+
+      /* header */
+      header { position: sticky; top: 0; background: rgba(255,255,255,.95); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 10; }
+      .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 16px; flex-wrap: wrap; }
+      .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -0.3px; }
+      .logo svg { flex-shrink: 0; }
+      .logo span em { color: var(--brand); font-style: normal; }
+      nav.links { display: flex; gap: 22px; font-size: 14.5px; font-weight: 600; }
+      nav.links a { color: var(--muted); text-decoration: none; }
+      nav.links a:hover { color: var(--brand); }
+      .cta-small { background: var(--brand); color: #fff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; white-space: nowrap; }
+      .cta-small:hover { background: var(--brand-dark); }
+
+      /* hero */
+      .hero { padding: 72px 0 64px; background: linear-gradient(180deg, #faf9f7 0%, #f3efe9 100%); position: relative; overflow: hidden; }
+      .hero::after { content: ""; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(196,122,46,.14), transparent 65%); }
+      .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+      .pill { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: var(--muted); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+      .pill .dot { width: 8px; height: 8px; background: #2e9e5b; border-radius: 50%; }
+      h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.12; letter-spacing: -1.2px; margin: 18px 0 16px; font-weight: 800; }
+      h1 em { color: var(--brand); font-style: normal; }
+      .hero p.lead { font-size: 18px; color: var(--muted); max-width: 540px; }
+      .hero-ctas { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+      .btn { padding: 14px 26px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 15px; }
+      .btn.primary { background: var(--brand); color: #fff; box-shadow: 0 6px 18px rgba(196,122,46,.35); }
+      .btn.primary:hover { background: var(--brand-dark); }
+      .btn.ghost { border: 1.5px solid var(--ink); color: var(--ink); }
+      .trust { display: flex; gap: 28px; margin-top: 34px; flex-wrap: wrap; }
+      .trust div { font-size: 13.5px; color: var(--muted); }
+      .trust b { display: block; font-size: 22px; color: var(--ink); }
+
+      /* hero visual: before/after card */
+      .ba-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; box-shadow: 0 24px 50px rgba(20,24,31,.12); }
+      .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .ba .panel { border-radius: 12px; height: 210px; position: relative; overflow: hidden; }
+      .panel.before { background: repeating-linear-gradient(45deg, #b9b2a8, #b9b2a8 8px, #c8c2b9 8px, #c8c2b9 16px); }
+      .panel.after { background: linear-gradient(160deg, #fdfcfa, #efe9e0); }
+      .panel .tag { position: absolute; left: 10px; bottom: 10px; background: rgba(20,24,31,.75); color: #fff; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+      .panel.after .tag { background: rgba(46,158,91,.85); }
+      .crack { position: absolute; inset: 0; opacity: .5; }
+      .ba-foot { display: flex; justify-content: space-between; align-items: center; padding: 12px 6px 4px; font-size: 13px; color: var(--muted); }
+      .stars { color: #e8a020; letter-spacing: 2px; }
+
+      /* sections */
+      section { padding: 64px 0; }
+      h2 { font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -0.8px; text-align: center; font-weight: 800; }
+      .sub { color: var(--muted); text-align: center; max-width: 620px; margin: 12px auto 40px; font-size: 16px; }
+
+      .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+      .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+      .card .icon { width: 42px; height: 42px; border-radius: 10px; background: #f6ecdf; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 20px; }
+      .card h3 { font-size: 17px; margin-bottom: 6px; }
+      .card p { font-size: 14px; color: var(--muted); }
+
+      /* services */
+      .services { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .svc { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .svc-item { display: flex; gap: 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 22px; align-items: flex-start; }
+      .svc-item .num { font-size: 26px; font-weight: 800; color: var(--brand); line-height: 1; }
+      .svc-item h3 { font-size: 16px; margin-bottom: 4px; }
+      .svc-item p { font-size: 14px; color: var(--muted); }
+
+      /* usp strip */
+      .usps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 18px; text-align: center; }
+      .usp .big { font-size: 15px; font-weight: 700; }
+
+      /* reviews */
+      .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+      .rev { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+      .rev p { font-size: 14.5px; color: var(--ink); }
+      .rev .who { margin-top: 14px; font-size: 13px; color: var(--muted); font-weight: 600; }
+
+      /* quote form */
+      .quote { background: var(--ink); color: #fff; border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+      .quote h2 { text-align: left; }
+      .quote .sub { text-align: left; margin: 12px 0 0; color: #aeb6c2; }
+      form { display: grid; gap: 12px; }
+      input, select, textarea { padding: 13px 15px; border-radius: 9px; border: 1px solid #3a414d; background: #1d222b; color: #fff; font-size: 14.5px; font-family: inherit; }
+      input::placeholder, textarea::placeholder { color: #77818f; }
+      button.submit { background: var(--brand); border: none; color: #fff; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 9px; cursor: pointer; }
+      button.submit:hover { background: var(--brand-dark); }
+      .form-note { font-size: 12.5px; color: #77818f; }
+
+      footer { padding: 40px 0 56px; color: var(--muted); font-size: 13.5px; }
+      .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+      .demo-note { position: fixed; bottom: 16px; right: 16px; background: var(--ink); color: #fff; font-size: 12px; padding: 8px 14px; border-radius: 999px; opacity: .85; z-index: 20; }
+
+      @media (max-width: 840px) {
+        .hero-grid, .quote { grid-template-columns: 1fr; }
+        nav.links { display: none; }
+        .svc { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="wrap">
+        <div>📞 <b>06 - 1412 7780</b> (Asen) · 06 - 4077 5527 (Hristo)</div>
+        <div>⭐ 9,2 op Werkspot · Actief in heel Nederland</div>
+      </div>
+    </div>
+
+    <header>
+      <div class="wrap nav">
+        <div class="logo">
+          <svg width="34" height="34" viewBox="0 0 34 34"><rect width="34" height="34" rx="8" fill="#c47a2e"/><path d="M8 12h18M8 17h18M8 22h18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <span>Gogov <em>Stucbedrijf</em></span>
+        </div>
+        <nav class="links">
+          <a href="#diensten">Diensten</a>
+          <a href="#werkwijze">Werkwijze</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="cta-small" href="#contact">Gratis offerte →</a>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill"><span class="dot"></span> 3e generatie stukadoors · Rotterdam</span>
+          <h1>Perfecte wanden &amp; plafonds. <em>Vakwerk sinds drie generaties.</em></h1>
+          <p class="lead">Stucbedrijf Gogov levert eersteklas stuc- en schilderwerk in heel Nederland — al vanaf €7,50 per m². Vrijblijvend advies aan huis, binnen 24 uur reactie.</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="#contact">Vraag een gratis offerte</a>
+            <a class="btn ghost" href="#diensten">Bekijk onze diensten</a>
+          </div>
+          <div class="trust">
+            <div><b>3</b> generaties vakmanschap</div>
+            <div><b>9,2</b> Werkspot-beoordeling</div>
+            <div><b>24u</b> offerte-reactie</div>
+          </div>
+        </div>
+        <div class="ba-card">
+          <div class="ba">
+            <div class="panel before">
+              <svg class="crack" viewBox="0 0 200 210"><path d="M40 10 L55 60 L45 110 L60 200 M120 0 L112 80 L130 130 L118 210" stroke="#7d766d" stroke-width="2.5" fill="none"/></svg>
+              <span class="tag">VOOR</span>
+            </div>
+            <div class="panel after"><span class="tag">NA</span></div>
+          </div>
+          <div class="ba-foot">
+            <span>Strak gestucte wand, geen scheuren</span>
+            <span class="stars">★★★★★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="diensten">
+      <div class="wrap">
+        <h2>Onze diensten</h2>
+        <p class="sub">Van eenvoudig raapwerk tot spachtelputz en complete afwerking inclusief schilderwerk. Alles onder één dak.</p>
+        <div class="svc">
+          <div class="svc-item"><div class="num">01</div><div><h3>Wanden &amp; plafonds stucen</h3><p>Glad en duurzaam stucwerk, garantie op geen scheuren.</p></div></div>
+          <div class="svc-item"><div class="num">02</div><div><h3>Schilderwerk</h3><p>Complete afwerking na het stucen, van kozijnen tot plafond.</p></div></div>
+          <div class="svc-item"><div class="num">03</div><div><h3>Renovatie &amp; herstel</h3><p>Scheuren en oude afwerkingen vakkundig hersteld.</p></div></div>
+          <div class="svc-item"><div class="num">04</div><div><h3>Bedrijfspanden</h3><p>Ook grotere projecten, buiten kantooruren mogelijk.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="werkwijze">
+      <div class="wrap">
+        <h2>Waarom klanten voor Gogov kiezen</h2>
+        <p class="sub">Eerlijke prijzen, alleen kwaliteitsmaterialen en een naam om trots op te zijn.</p>
+        <div class="grid3">
+          <div class="card"><div class="icon">🏠</div><h3>Actief in heel Nederland</h3><p>Niet regiogebonden — we komen vrijblijvend langs voor een passend voorstel.</p></div>
+          <div class="card"><div class="icon">💰</div><h3>Vanaf €7,50 per m²</h3><p>Scherpe prijs door efficiënt werken, zonder in te leveren op kwaliteit.</p></div>
+          <div class="card"><div class="icon">🤝</div><h3>Familiebedrijf, 3e generatie</h3><p>Vakmanschap dat van opa op vader op zoon is doorgegeven.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap">
+        <h2>Wat klanten zeggen</h2>
+        <p class="sub">Beoordeling 9,2 op Werkspot — hieronder een selectie.</p>
+        <div class="reviews">
+          <div class="rev"><p>“Heel erg tevreden met het resultaat. De mannen van Gogov zijn flexibel en hebben heel net werk afgeleverd.”</p><div class="who">— Via Werkspot</div></div>
+          <div class="rev"><p>“We hebben onze woning laten stucen door de jongens van Gogov en ze leveren echt vakwerk! Denken mee en topkwaliteit.”</p><div class="who">— Via Trustoo</div></div>
+          <div class="rev"><p>“Mooi stucwerk geleverd. We zijn tevreden. Komen ook hun afspraken na. Echt helemaal prima.”</p><div class="who">— Via Trustoo</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="quote">
+          <div>
+            <h2>Vraag vrijblijvend een gratis offerte aan</h2>
+            <p class="sub">Binnen 24 uur reactie van Asen of Hristo. Liever direct contact? Bel of app <b>06 - 1412 7780</b>.</p>
+          </div>
+          <form onsubmit="event.preventDefault(); this.nextElementSibling.textContent='✓ Bedankt! Demo-formulier — in de echte versie komt dit bij Gogov terecht.';">
+            <input required placeholder="Uw naam" />
+            <input required type="email" placeholder="E-mailadres" />
+            <input placeholder="Telefoonnummer" />
+            <select><option>Stucwerk</option><option>Schilderwerk</option><option>Stuc + schilderwerk</option><option>Anders / herstel</option></select>
+            <textarea rows="3" placeholder="Korte omschrijving van de klus (m², aantal kamers...)"></textarea>
+            <button class="submit" type="submit"> Verstuur aanvraag</button>
+          </form>
+          <div class="form-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div><b>Stucbedrijf Gogov</b><br/>Dr. Zamenhofstraat 19A, 3112 ZH Schiedam<br/>KVK 50964178 · BTW NL264589208B01</div>
+        <div>gogovklusbedrijf@live.nl<br/>06 - 1412 7780 (Asen) · 06 - 4077 5527 (Hristo)</div>
+        <div>© 2026 Stucbedrijf Gogov<br/>Demo-ontwerp ter illustratie</div>
+      </div>
+    </footer>
+
+    <div class="demo-note">🎨 Demo-ontwerp</div>
+  </body>
+</html>
